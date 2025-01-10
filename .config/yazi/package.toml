@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "Reledia/glow", rev = "388e847" }, { use = "Ape/mediainfo", rev = "c69314e" }, { use = "dedukun/relative-motions", rev = "44c4c1c" }, { use = "yazi-rs/plugins:jump-to-char", rev = "a53d544" }, { use = "stelcodes/bunny", rev = "49bd059" }, { use = "h-hg/yamb", rev = "0598b8d" }, { use = "Lil-Dank/lazygit", rev = "c82794f" }]
+
+[flavor]
+deps = []
