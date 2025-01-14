@@ -3,7 +3,7 @@
 # dotfiles commit -m "A short message"
 # dotfiles push
 alias dotfiles='/usr/bin/git --git-dir=$HOME/repo/dotfiles/ --work-tree=$HOME'
-alias volume='~/repo/shell_scripts/pulsemixer'
+alias volume='~/repo/scripts/pulsemixer'
 alias bt='bluetuith'
 alias fetch="fastfetch"
 alias nv="nvim"
