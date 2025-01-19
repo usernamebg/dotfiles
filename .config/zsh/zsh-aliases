@@ -5,7 +5,7 @@
 alias dotfiles='/usr/bin/git --git-dir=$HOME/repo/dotfiles/ --work-tree=$HOME'
 alias volume='~/repo/scripts/pulsemixer'
 alias bt='bluetuith'
-alias fetch="fastfetch"
+alias archbtw="fastfetch"
 alias nv="nvim"
 alias f='fzf'
 ZSH_DIR="$HOME/.config/zsh"

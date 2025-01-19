@@ -16,7 +16,9 @@ choice=$(
     "option 3: video audio(i) - main screen" \
     "option 4: video audio(i) - secondary screen" \
     "option 5: video - main screen" \
-    "option 6: video - secondary screen"
+    "option 6: video - secondary screen" \
+    "option 7: audio only"
+
 )
 
 # Print choice for troubleshooting
@@ -78,6 +80,15 @@ elif [[ "$choice" == "option 6: video - secondary screen" ]]; then
     -f x11grab -video_size 1440x2560 -framerate 30 -i :0.0+2560,0 \
     -c:v libx264 -preset ultrafast -crf 18 \
     -y "$save_dir/$output_name.mp4"
+elif [[ "$choice" == "option 7: audio only" ]]; then
+  ffmpeg \
+    -f pulse -i alsa_input.usb-DCMT_Technology_USB_Condenser_Microphone_214b206000000178-00.pro-input-0 \
+    -f pulse -i bluez_output.38_18_4C_24_F1_94.1.monitor \
+    -filter_complex "[0:a]pan=stereo|c0=c0|c1=c0[mic]; [mic][1:a]amerge=inputs=2[a]" \
+    -map "[a]" \
+    -c:a aac -b:a 192k \
+    -y "$save_dir/$output_name.mp4"
+
 else
   echo "Invalid choice. Exiting."
 fi

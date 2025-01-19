@@ -12,6 +12,7 @@ return {
 				"css-lsp",
 				"clangd",
 				"gopls",
+				"pyright",
 			})
 		end,
 	},
