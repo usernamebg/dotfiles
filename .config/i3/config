@@ -44,9 +44,6 @@ exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id xset s noblank
 
-# lock
-exec --no-startup-id betterlockscreen -w dim
-
 # notion alt? https://b3log.org/siyuan
 # exec --no-startup-id flatpak run org.b3log.siyuan
 
@@ -63,8 +60,6 @@ exec --no-startup-id nm-applet
 # transparency
 # exec --no-startup-id picom
 
-# wallpaper
-exec --no-startup-id $wallpaper
 
 
 # Use pactl to adjust volume in PulseAudio.
@@ -95,6 +90,9 @@ bindsym $mod+t exec alacritty -e zsh -c 'daedline 2026-01-01 && zsh'
 bindsym $mod+c exec google-chrome-stable
 #screenshots
 bindsym $mod+s exec flameshot gui
+
+# wallpaper
+exec --no-startup-id $wallpaper
 
 # change focus
 bindsym $alt+h focus left
@@ -135,6 +133,10 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# defined workspaces
+workspace $ws1 output DisplayPort-1
+workspace $ws9 output DisplayPort-2
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
