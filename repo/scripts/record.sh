@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Set variables for my audiopulse microphone,headphones and directory for the recordings
+# Set variables for my audiopulse microphone, headphones, and directory for the recordings
 mic="alsa_input.usb-DCMT_Technology_USB_Condenser_Microphone_214b206000000178-00.pro-input-0"
 headphones="bluez_output.38_18_4C_24_F1_94.1.monitor"
 save_dir="$HOME/recordings"
@@ -15,10 +15,11 @@ choice=$(
     "option 2: video audio(i/o) - secondary screen" \
     "option 3: video audio(i) - main screen" \
     "option 4: video audio(i) - secondary screen" \
-    "option 5: video - main screen" \
-    "option 6: video - secondary screen" \
-    "option 7: audio only"
-
+    "option 5: video audio (o) - main screen" \
+    "option 6: video audio (o) - secondary screen" \
+    "option 7: video - main screen" \
+    "option 8: video - secondary screen" \
+    "option 9: audio only"
 )
 
 # Print choice for troubleshooting
@@ -38,7 +39,7 @@ fi
 # ffmpeg magic depending on the choice of recording
 if [[ "$choice" == "option 1: video audio(i/o) - main screen" ]]; then
   ffmpeg \
-    -f x11grab -video_size 2560x1440 -framerate 30 -i :0.0+0,498 \
+    -f x11grab -video_size 2560x1440 -framerate 30 -i :0.0+1440,439 \
     -f pulse -i "$mic" \
     -f pulse -i "$headphones" \
     -filter_complex "[1:a]pan=stereo|c0=c0|c1=c0[mic]; [mic][2:a]amerge=inputs=2[a]" \
@@ -47,7 +48,7 @@ if [[ "$choice" == "option 1: video audio(i/o) - main screen" ]]; then
     -y "$save_dir/$output_name.mp4"
 elif [[ "$choice" == "option 2: video audio(i/o) - secondary screen" ]]; then
   ffmpeg \
-    -f x11grab -video_size 1440x2560 -framerate 30 -i :0.0+2560,0 \
+    -f x11grab -video_size 1440x2560 -framerate 30 -i :0.0+0,0 \
     -f pulse -i "$mic" \
     -f pulse -i "$headphones" \
     -filter_complex "[1:a]pan=stereo|c0=c0|c1=c0[mic]; [mic][2:a]amerge=inputs=2[a]" \
@@ -56,7 +57,7 @@ elif [[ "$choice" == "option 2: video audio(i/o) - secondary screen" ]]; then
     -y "$save_dir/$output_name.mp4"
 elif [[ "$choice" == "option 3: video audio(i) - main screen" ]]; then
   ffmpeg \
-    -f x11grab -video_size 2560x1440 -framerate 30 -i :0.0+0,498 \
+    -f x11grab -video_size 2560x1440 -framerate 30 -i :0.0+1440,439 \
     -f pulse -i "$mic" \
     -filter_complex "[1:a]pan=stereo|c0=c0|c1=c0[mic]" \
     -map 0:v -map "[mic]" \
@@ -64,34 +65,42 @@ elif [[ "$choice" == "option 3: video audio(i) - main screen" ]]; then
     -y "$save_dir/$output_name.mp4"
 elif [[ "$choice" == "option 4: video audio(i) - secondary screen" ]]; then
   ffmpeg \
-    -f x11grab -video_size 1440x2560 -framerate 30 -i :0.0+2560,0 \
+    -f x11grab -video_size 1440x2560 -framerate 30 -i :0.0+0,0 \
     -f pulse -i "$mic" \
     -filter_complex "[1:a]pan=stereo|c0=c0|c1=c0[mic]" \
     -map 0:v -map "[mic]" \
     -c:v libx264 -preset ultrafast -crf 18 -c:a aac -b:a 192k \
     -y "$save_dir/$output_name.mp4"
-elif [[ "$choice" == "option 5: video - main screen" ]]; then
+elif [[ "$choice" == "option 5: video audio (o) - main screen" ]]; then
   ffmpeg \
-    -f x11grab -video_size 2560x1440 -framerate 30 -i :0.0+0,498 \
+    -f x11grab -video_size 2560x1440 -framerate 30 -i :0.0+1440,439 \
+    -f pulse -i "$headphones" \
+    -c:v libx264 -preset ultrafast -crf 18 -c:a aac -b:a 192k \
+    -y "$save_dir/$output_name.mp4"
+elif [[ "$choice" == "option 6: video audio (o) - secondary screen" ]]; then
+  ffmpeg \
+    -f x11grab -video_size 1440x2560 -framerate 30 -i :0.0+0,0 \
+    -f pulse -i "$headphones" \
+    -c:v libx264 -preset ultrafast -crf 18 -c:a aac -b:a 192k \
+    -y "$save_dir/$output_name.mp4"
+elif [[ "$choice" == "option 7: video - main screen" ]]; then
+  ffmpeg \
+    -f x11grab -video_size 2560x1440 -framerate 30 -i :0.0+1440,439 \
     -c:v libx264 -preset ultrafast -crf 18 \
     -y "$save_dir/$output_name.mp4"
-elif [[ "$choice" == "option 6: video - secondary screen" ]]; then
+elif [[ "$choice" == "option 8: video - secondary screen" ]]; then
   ffmpeg \
-    -f x11grab -video_size 1440x2560 -framerate 30 -i :0.0+2560,0 \
+    -f x11grab -video_size 1440x2560 -framerate 30 -i :0.0+0,0 \
     -c:v libx264 -preset ultrafast -crf 18 \
     -y "$save_dir/$output_name.mp4"
-elif [[ "$choice" == "option 7: audio only" ]]; then
+elif [[ "$choice" == "option 9: audio only" ]]; then
   ffmpeg \
-    -f pulse -i alsa_input.usb-DCMT_Technology_USB_Condenser_Microphone_214b206000000178-00.pro-input-0 \
-    -f pulse -i bluez_output.38_18_4C_24_F1_94.1.monitor \
+    -f pulse -i "$mic" \
+    -f pulse -i "$headphones" \
     -filter_complex "[0:a]pan=stereo|c0=c0|c1=c0[mic]; [mic][1:a]amerge=inputs=2[a]" \
     -map "[a]" \
     -c:a aac -b:a 192k \
     -y "$save_dir/$output_name.mp4"
-
 else
   echo "Invalid choice. Exiting."
 fi
-
-#TODO:
-#1. Include these options in i3, create a mode and preset the choices from 1-6 on $mod+1-6
