@@ -25,6 +25,21 @@ return {
 		end
 
 		-- Keybindings for Debug Adapter Protocol (DAP)
+		-- Core debugging controls
+		vim.keymap.set("n", "<F1>", dap.continue, { desc = "Continue debugging/start session" })
+		vim.keymap.set("n", "<F2>", dap.terminate, { desc = "Terminate debugging session" })
+
+		-- Stepping controls
+		vim.keymap.set("n", "<F3>", dap.step_over, { desc = "Step over function/statement" })
+		vim.keymap.set("n", "<F4>", dap.step_into, { desc = "Step into function/statement" })
+		vim.keymap.set("n", "<F5>", dap.step_out, { desc = "Step out of function/scope" })
+
+		-- Breakpoints and REPL
+		vim.keymap.set("n", "<F6>", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
+		vim.keymap.set("n", "<F7>", dap.repl.open, { desc = "Open Debugger REPL" })
+
+		vim.keymap.set("n", "<leader>dt", "<cmd> lua vim.cmd('RustLsp testables')<CR>", { desc = "Debugger testables" })
+		-- Keeping old one for now
 		vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
 		vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "Continue debugging/start session" })
 
@@ -35,24 +50,5 @@ return {
 		vim.keymap.set("n", "<Leader>dt", dap.terminate, { desc = "Terminate debugging session" })
 
 		dap.set_log_level("TRACE")
-
-		-- adapters /repo/git_stuff
-		dap.adapters.firefox = {
-			type = "executable",
-			command = "node",
-			os.getenv("HOME") .. "/repo/git_stuff/vscode-firefox-debug/dist/adapter.bundle.js",
-		}
-
-		dap.configurations.typescript = {
-			{
-				name = "Debug with Firefox",
-				type = "firefox",
-				request = "launch",
-				reAttach = true,
-				url = "http://localhost:3000",
-				webRoot = "${workspaceFolder}",
-				firefoxExecutable = "/usr/bin/firefox",
-			},
-		}
 	end,
 }

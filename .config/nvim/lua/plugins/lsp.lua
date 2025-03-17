@@ -16,7 +16,6 @@ return {
 			})
 		end,
 	},
-
 	-- lsp servers
 	{
 		"neovim/nvim-lspconfig",
@@ -133,7 +132,11 @@ return {
 					},
 				},
 			},
-			setup = {},
+			setup = {
+				rust_analyzer = function()
+					return true
+				end,
+			},
 		},
 	},
 	{
