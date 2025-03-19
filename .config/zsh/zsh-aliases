@@ -3,15 +3,18 @@
 # dotfiles commit -m "A short message"
 # dotfiles push
 alias dotfiles='/usr/bin/git --git-dir=$HOME/repo/dotfiles/ --work-tree=$HOME'
-alias volume='~/repo/scripts/pulsemixer'
+alias vol='pulsemixer'
 alias bt='bluetuith'
-alias archbtw="fastfetch"
+alias fetch="fastfetch"
 alias nv="nvim"
 alias f='fzf'
 ZSH_DIR="$HOME/.config/zsh"
 alias zsh-update-plugins="find "$ZSH_DIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 alias nvimrc='nvim ~/.config/nvim/'
 alias py='python3'
+alias obs='flatpak run com.obsproject.Studio'
+alias webcam='ffmpeg -f v4l2 -input_format mjpeg -video_size 640x480 -framerate 30 -i /dev/video0 -c:v libx264 -preset veryfast -crf 21 ~/recordings/webcam_$(date +%Y%m%d_%H%M%S).mp4'
+alias record='/home/vegapunk/repo/scripts/record.sh'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -33,15 +36,4 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 # get top process eating cpu
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-# gpg encryption
-# verify signature for isos
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-# receive the key of a developer
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-
-# systemd
-alias m="git checkout master"
-alias s="git checkout stable"
-
 alias ls='ls --color=auto'
-
