@@ -58,6 +58,7 @@ return {
       vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = 'Telescope Treesitter' })
       vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope LSP diagnostics' })
       vim.keymap.set('n', '<leader>fc', builtin.command_history, { desc = 'Telescope command history' })
+      vim.keymap.set('n', '<leader>td', ':TodoTelescope<CR>', { noremap = true, silent = true })
 
       require "utils.multigrep".setup()
     end

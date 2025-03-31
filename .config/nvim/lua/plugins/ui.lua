@@ -27,4 +27,7 @@ return {
       -- "rcarriga/nvim-notify", -- noice can handle notifications
     },
   },
+  {
+    
+  },
 }

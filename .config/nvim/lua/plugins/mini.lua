@@ -10,7 +10,12 @@ return {
 
       -- Text manipulation plugins
       require('mini.ai').setup()         -- Enhanced text objects
+      require('mini.icons').setup()
+      require('mini.hipatterns').setup()
       require('mini.surround').setup()   -- Surround text objects
+      
+      require('mini.indentscope').setup()
+      require('mini.hipatterns').setup()
     end
   },
 }
