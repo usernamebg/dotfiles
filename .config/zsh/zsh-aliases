@@ -14,7 +14,10 @@ alias nvimrc='nvim ~/.config/nvim/'
 alias py='python3'
 alias obs='flatpak run com.obsproject.Studio'
 alias webcam='ffmpeg -f v4l2 -input_format mjpeg -video_size 640x480 -framerate 30 -i /dev/video0 -c:v libx264 -preset veryfast -crf 21 ~/recordings/webcam_$(date +%Y%m%d_%H%M%S).mp4'
+alias venv="/home/vegapunk/repo/scripts/venv.sh"
+alias s="source .venv/bin/activate"
 alias record='/home/vegapunk/repo/scripts/record.sh'
+alias ascii='/home/vegapunk/repo/scripts/print_ascii.sh'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -37,3 +40,4 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 alias ls='ls --color=auto'
+alias searchman='apropos'

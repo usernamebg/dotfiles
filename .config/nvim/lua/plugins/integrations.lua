@@ -49,9 +49,9 @@ return {
 		end,
 		keys = {
 			{
-				"\\r",
-				"<Plug>RestNvim",
-				desc = "Test the current file",
+        "<leader r",
+        "<Plug>RestNvim",
+        desc = "Run rest.nvim request", -- Already had desc, slightly clarified
 			},
 		},
 	},

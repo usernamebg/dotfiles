@@ -1,5 +1,6 @@
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+# source <("/home/vegapunk/repo/git/bash/fzf-marks/fzf-marks.plugin.zsh")
 source <(fzf --zsh)
 
 # source $HOME/.cargo/env

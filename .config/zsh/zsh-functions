@@ -28,7 +28,9 @@ function zsh_add_completion() {
 		rm $ZSH_DIR/.zccompdump
     fi
 	completion_file="$(basename "${completion_file_path}")"
-	if [ "$2" = true ] && compinit "${completion_file:1}"
+	if [ "$2" = true ]; then
+		compinit "${completion_file:1}"
+	fi
 }
 
 lg()

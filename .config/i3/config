@@ -17,13 +17,14 @@ set $monitor_setup ~/.screenlayout/monitor_setup.sh
 set $wallpaper ~/repo/scripts/wallpaper.sh
 set $shutdown ~/repo/scripts/shutdown.sh
 set $reboot ~/repo/scripts/reboot.sh
+set $terminal  ~/repo/scripts/start_terminal.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Hack 9
 
 # keyboard layout with us standard and bg (bulgarian) phonetic layout
-exec_always "setxkbmap -model pc104 -layout us,bg -variant ,phonetic -option grp:alt_shift_toggle"
+exec_always "setxkbmap -model pc104 -layout us,bg -variant ,phonetic -option grp:win_space_toggle"
 
 # remove tittle bar
 default_border pixel 1
@@ -57,10 +58,11 @@ exec --no-startup-id $monitor_setup
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# wallpaper
+exec --no-startup-id $wallpaper
+
 # transparency
 # exec --no-startup-id picom
-
-
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -82,17 +84,20 @@ tiling_drag modifier titlebar
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $mod+d exec --no-startup-id dmenu_run
+
+# start rofi (new program launcher)
+bindsym $mod+k exec --no-startup-id rofi -show drun
 
 # start a terminal
-bindsym $mod+t exec alacritty -e zsh -c 'daedline 2026-01-01 && zsh'
+bindsym $mod+t exec alacritty -e $terminal
+
 # browser
-bindsym $mod+c exec google-chrome-stable
+bindsym $mod+v exec vivaldi
+# bindsym $mod+c exec google-chrome-stable
 #screenshots
 bindsym $mod+s exec flameshot gui
 
-# wallpaper
-exec --no-startup-id $wallpaper
 
 # change focus
 bindsym $alt+h focus left
@@ -107,10 +112,10 @@ bindsym $alt+Shift+k move up
 bindsym $alt+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+# bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+# bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -189,11 +194,15 @@ mode "launcher" {
   # todo
   bindsym $mod+p exec superproductivity
   # viber
-  bindsym $mod+v exec "/home/vegapunk/repo/scripts/viber.sh"
-  #mail?
-  bindsym $mod+t exec thunderbird
+  bindsym $mod+v exec "~/repo/scripts/viber.sh"
+  # tor
+  bindsym $mod+t exec "~/repo/tor-browser/start-tor-browser.desktop"
   
   bindsym $mod+d exec discord
+
+  bindsym $mod+s exec "~/repo/appimages/simplex-desktop-x86_64.AppImage"
+
+  bindsym $mod+c exec "~/repo/appimages/Cursor0470.AppImage"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
