@@ -49,7 +49,7 @@ return {
 		end,
 		keys = {
 			{
-        "<leader r",
+        "<leader>r",
         "<Plug>RestNvim",
         desc = "Run rest.nvim request", -- Already had desc, slightly clarified
 			},

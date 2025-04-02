@@ -26,7 +26,7 @@ return {
     config = function()
       -- Only attempt to get CodeLLDB paths if mason is loaded
       local mason_ok, mason_registry = pcall(require, "mason-registry")
-      local codelldb_path, liblldb_path
+      local codelldb_path, liblldb_path 
       
       if mason_ok and mason_registry.is_installed("codelldb") then
         local codelldb = mason_registry.get_package("codelldb")

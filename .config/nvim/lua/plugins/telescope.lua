@@ -38,7 +38,7 @@ return {
             },
           },
           diagnostics = {
-            theme = "dropdown",
+            theme = "ivy",
           },
           command_history = {
             theme = "cursor",
