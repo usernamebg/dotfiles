@@ -139,10 +139,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# defined workspaces
-workspace $ws1 output DisplayPort-1
-workspace $ws9 output DisplayPort-2
-
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -245,6 +241,5 @@ bindsym $mod+i mode "i3"
 bar {
         status_command i3status
         mode dock
-        tray_output DisplayPort-2
 }
 
