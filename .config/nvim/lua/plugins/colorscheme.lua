@@ -1,15 +1,28 @@
 return {
-	"folke/tokyonight.nvim",
-	name = "tokyonight",
-	config = function()
-		require("tokyonight").setup({
-			style = "night",
-			transparent = true,
-		})
+  "folke/tokyonight.nvim",
+  name = "tokyonight",
+  lazy = false, 
+  priority = 1000,
+  config = function()
+    local black = "#000000" 
+    local white = "#FFFFFF"
 
-		vim.cmd("colorscheme tokyonight")
+    require("tokyonight").setup({
+      style = "night",
+      transparent = false,
 
-		vim.api.nvim_set_hl(0, "Normal", { bg = "#000000", ctermbg = 0 })
-		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000", ctermbg = 0 })
-	end,
+      on_colors = function(colors)
+        colors.bg = black         -- Main editor background
+        colors.bg_dark = black    -- Darker background variant (often used in sidebars/floats)
+        colors.bg_float = black   -- Explicit float background
+        colors.bg_popup = black   -- Often same as bg_float
+        colors.bg_sidebar = black -- Explicit sidebar background 
+
+        colors.bg_statusline = white
+      end,
+    })
+
+    vim.cmd("colorscheme tokyonight")
+
+  end,
 }

@@ -191,10 +191,10 @@ mode "launcher" {
   bindsym $mod+p exec superproductivity
   # viber
   bindsym $mod+v exec "~/repo/scripts/viber.sh"
-  # tor
-  bindsym $mod+t exec "~/repo/tor-browser/start-tor-browser.desktop"
   
   bindsym $mod+d exec discord
+
+  bindsym $mod+o exec obsidian
 
   bindsym $mod+s exec "~/repo/appimages/simplex-desktop-x86_64.AppImage"
 

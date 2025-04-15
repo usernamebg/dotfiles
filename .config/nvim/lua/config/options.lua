@@ -3,6 +3,8 @@ local o = vim.opt
 vim.g.mapleader = " "
 vim.scriptencoding = "utf-8"
 
+o.ruler = false
+
 o.clipboard = "unnamedplus"
 o.encoding = "utf-8"
 o.fileencoding = "utf-8"
@@ -10,7 +12,7 @@ o.fileencoding = "utf-8"
 o.number = true
 o.title = true
 o.showcmd = true
-o.cmdheight = 0
+o.cmdheight = 1
 o.laststatus = 0
 o.scrolloff = 10
 o.smarttab = true
@@ -47,6 +49,6 @@ o.undofile = true
 o.hlsearch = false
 o.incsearch = true
 o.termguicolors = true
--- o.scrolloff = 10  -- Removed duplicate
+
 o.signcolumn = "yes"
 o.isfname:append("@-@")

@@ -31,6 +31,6 @@ map('n', '<C-j>', '<C-w>j', opts)
 map('n', '<C-k>', '<C-w>k', opts)
 map('n', '<C-l>', '<C-w>l', opts)
 
-map('n', '<leader><space>x', '<cmd>sourcr %<CR>')
+map('n', '<leader><space>x', '<cmd>source %<CR>')
 map('n', '<leader>x', ':.lua<CR>')
 map('v', '<leader>x', ':lua<CR>')
